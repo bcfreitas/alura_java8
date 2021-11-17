@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class OrdenaString {
 	public static void main(String[] args) {
@@ -79,6 +80,29 @@ public class OrdenaString {
 		
 		//e pra simplificar, tiramos até as chaves:
 		palavras.forEach(s -> System.out.println(s));
+		
+		//Java 8 também trouxe novos métodos auxiliares interessantes
+		//como o Comparator.comparing, que é um método default (com impl) estático
+		//ele é uma fábrica de Comparator, e podemos usar lambda
+		palavras.sort(Comparator.comparing(s -> s.length()));
+		
+		//este método recebe uma interface funcional chamada Function 
+		//que possui um método apply. Em virtude disso podemos usar lambda em seu lugar.
+		//se não usássemos lambda, ficaria assim:
+		Function<String, Integer> funcao = s -> s.length();
+		Comparator<String> comparador3 = Comparator.comparing(funcao);
+		palavras.sort(comparador3);
+		
+		//Mas ainda dá pra simplificar mais!!
+		//Method Reference do Java 8, que é equivalente ao lambda
+		palavras.sort(Comparator.comparing(String::length));
+		
+		//tanto lambda como method reference geram a mesma função: dada uma
+		//String, invoca o método length e devolve o Integer. Outro exemplo:
+		palavras.forEach(System.out::println);
+		
+		//quando o método possui mais de 1 parâmetro, aí não dá pra 
+		//usar method reference! apenas lambda.
 	}
 }
 
