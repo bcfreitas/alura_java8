@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
 
 class Curso {
     private String nome;
@@ -53,6 +54,9 @@ public class ExemplosStream {
 		;
 		
 		System.out.println(sum);
+		
+		//como fazer para transformar a stream de cursos em stream de nomes dos cursos?
+		Stream<String> nomes = cursos.stream().map(Curso::getNome);
 	}
 	
 }
