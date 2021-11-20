@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
@@ -115,6 +114,16 @@ public class ExemplosStream {
 		strs.add("a");
 		
 		strs.stream();	
+		
+		System.out.println("exercicios...");
+		System.out.println("");
+		
+		//exercicio: calculando a quantidade média de alunos de todos os cursos
+		System.out.println(
+				cursos.stream()
+					.mapToInt(Curso::getAlunos)
+					.average().getAsDouble()
+					);
 		
 	}
 	
